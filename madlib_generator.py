@@ -36,10 +36,26 @@ class Words:
 
 w = Words()
 attributes_dict = asdict(w)
+print(attributes_dict)
+# word_dressed = [attributes_dict[f"<{attr}>"] = value for attr, value in attributes_dict.items()]
+
+def insert_bracket(source_string: str):
+    return f"<{source_string}>"
+
+zipped = list(zip(map(insert_bracket, attributes_dict.keys()), attributes_dict.values()))
+print(zipped)
+
+answers = ["<" + sublist[0] + ">" for sublist in zipped]
+print("ans", answers)
+print(attributes_dict)
+# compr = [sub_zipped[0]. for sub_zipped in zipped for item in sub_zipped]
+attributes = [dict(sublist) for sublist in zipped]
+print(attributes)
 
 for word in words_list:
-    word_strip = word.replace("<", "").replace(">", "")
-    story = story.replace(word, attributes_dict[word_strip])
+    # word_strip = word.replace("<", "").replace(">", "")
+    story = story.replace(word, attributes_dict[word])
+    print(story)
 
 print(story)
 
