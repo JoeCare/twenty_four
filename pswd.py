@@ -19,7 +19,7 @@ def add():
 
 while True:
     command = input(
-        "Would you like to add a new password press q to quit?")
+        "Would you like to add a new password. Press q to quit?")
     if command == "q":
         break
     elif command == "add":
