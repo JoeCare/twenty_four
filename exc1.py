@@ -1,33 +1,41 @@
 from math import gcd
 
-def fibonacci_recursive(n: int) -> int:
+def fibonacci_recursive(ind: int) -> int:
     # print(n)
-    if n == 0:
+    if ind == 0:
         return 0
-    elif n == 1:
+    elif ind == 1:
         return 1
     else:
-        return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+        return fibonacci_recursive(ind - 1) + fibonacci_recursive(ind - 2)
+print("fibr", fibonacci_recursive(7))
+for i in range(20):
+    print(i, fibonacci_recursive(i))
 
-print(fibonacci_recursive(7))
 
-
-def fibonacci_iter(n: int) -> int:
+def fibonacci_iter(ind: int) -> int:
     a = 0 
     b = 1
-    if n < 0:
+    if ind < 0:
         raise ValueError("Wrong input.")
-    elif n == 0 or n == 1:
-        return n
+    elif ind == 0 or ind == 1:
+        return ind
     else:
-        for i in range(2, n + 1):
+        for i in range(2, ind + 1):
             c = a + b
             a = b
             b = c
         return c
 
-
 print(fibonacci_iter(7))
+
+def fibonacci(ind: int) -> int:
+    f = [0, 1]
+    for i in range(2, ind+1):
+        f.append(f[i-1] + f[i-2])
+    return f[ind]
+
+print(fibonacci(10))
 # numbers = [i for i in range(0,111)]
 # print(numbers)
 # for i in numbers:
@@ -69,7 +77,16 @@ def sum_list(numbers: list[int]):
 print(sum_list(nums))
 
 nest_nums = [[i for i in range(1,4)] for item in nums]
+
 def recursely_sum_list(data: list[int]) -> int:
     summary = 0
+    for lis in data:
+        if type(lis) == list:
+            summary += recursely_sum_list(lis)
+        else:
+            summary = summary + lis
+    return summary
+
 
 print(nest_nums)
+print(recursely_sum_list(nest_nums))
